@@ -1,0 +1,27 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+
+# Environment
+venv/
+pyvenv.cfg
+
+# Distribution / Packages
+bin/
+include/
+lib/
+lib64/
+dist/
+build/
+*.egg-info/
+
+# Local
+instance/
+
+# Config
+config.py
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
