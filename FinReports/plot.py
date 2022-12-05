@@ -22,4 +22,9 @@ def ohlc_chart(symbol):
                                  ))
     
     return fig
-    
+
+def data_table(symbol):
+    df = openbb.stocks.fa.key(symbol)
+    df = df.to_dict()
+    df = df[0]
+    return df
