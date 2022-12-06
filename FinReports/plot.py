@@ -2,6 +2,7 @@ import plotly.graph_objects as go
 from openbb_terminal.sdk import openbb
 import pandas as pd
 from datetime import datetime
+import re
     
 def ohlc_chart(symbol):
     df = openbb.stocks.load(
@@ -23,8 +24,31 @@ def ohlc_chart(symbol):
     
     return fig
 
-def data_table(symbol):
-    df = openbb.stocks.fa.key(symbol)
+def fa_overview(symbol):
+    df = openbb.stocks.fa.overview(symbol)
     df = df.to_dict()
     df = df[0]
     return df
+
+def hum_format(num):
+    num = float('{:.3g}'.format(num))
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num /= 1000.0
+    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+    
+def num_format(num):
+    if type(num) == float or type(num) == int:
+        return num
+    if 'K' in num:
+        if len(num) > 1:
+            return float(num.replace('K', '')) * 1000
+        return 1000.0
+    if 'M' in num:
+        if len(num) > 1:
+            return float(num.replace('M', '')) * 1000000
+        return 1000000.0
+    if 'B' in num:
+        return float(num.replace('B', '')) * 1000000000
+    return 0.0
