@@ -23,8 +23,8 @@ def layout(dash_app):
                 html.Tr([html.Td('P/S'), html.Td(id='ps')]),
                 html.Tr([html.Td('P/B'), html.Td(id='pb')]),
                 html.Tr([html.Td('Book Value'), html.Td(id='bv')]),  
-                html.Tr([html.Td('Debt/Eq'), html.Td(id='dteq')]), 
-                html.Tr([html.Td('LT Debt/Eq'), html.Td(id='ltdteq')])     
+                html.Tr([html.Td('D/E'), html.Td(id='dteq')]), 
+                html.Tr([html.Td('D/A'), html.Td(id='dtas')])     
                 ]),
             html.Table([
                 html.Tr([html.Td('EPS'), html.Td(id='eps')]),

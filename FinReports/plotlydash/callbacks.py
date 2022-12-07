@@ -35,8 +35,7 @@ def init_callbacks(dash_app):
         else:
             try:
                 dict = plot.fa_overview(input_value)
-                book_value = plot.hum_format(float(dict['Book value'])*(plot.num_format(dict['Shares outstanding'])))
-                return [dcc.Graph(id='search_output', figure=plot.ohlc_chart(input_value))], dict['Exchange'], dict['Market capitalization'], dict['Revenue TTM'], 'TODO', dict['Book value'], 'TODO', dict['PE ratio'], dict['Price to sales ratio TTM'], dict['Price to book ratio'], book_value, dict['EPS'], dict['Return on assets TTM'], dict['Profit margin'], dict['Operating margin TTM'], dict['Shares outstanding'], dict['52 week high'], dict['52 week low'], dict['200 day moving average'], dict['Dividend per share'] 
+                return [dcc.Graph(id='search_output', figure=plot.ohlc_chart(input_value))], dict['Exchange'], dict['Market capitalization'], dict['Revenue TTM'], 'TODO', dict['Book value'], 'TODO', dict['PE ratio'], dict['Price to sales ratio TTM'], dict['Price to book ratio'], dict['Book total'], dict['EPS'], dict['Return on assets TTM'], dict['Profit margin'], dict['Operating margin TTM'], dict['Shares outstanding'], dict['52 week high'], dict['52 week low'], dict['200 day moving average'], dict['Dividend per share'] 
             except (KeyError, TypeError, ValueError) as error:
                 print(error)
          

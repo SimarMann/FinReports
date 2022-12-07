@@ -28,6 +28,27 @@ def fa_overview(symbol):
     df = openbb.stocks.fa.overview(symbol)
     df = df.to_dict()
     df = df[0]
+    df['Book total']= hum_format(float(df['Book value'])*(num_format(df['Shares outstanding'])))
+    return df
+
+## Requires API_KEY_FINANCIALMODELINGPREP
+def fa_metrics(symbol):
+    df = openbb.stocks.fa.metrics(symbol, 1, False)
+    df = df.to_dict()
+    df = df[0]
+    return df
+
+## Convert from scientific notation to float
+def fa_income(symbol):
+    df = openbb.stocks.fa.income(symbol, False, False, "YahooFinance", 1)
+    print(df)
+    return df
+
+## Requires API_KEY_FINANCIALMODELINGPREP
+def fa_growth(symbol):
+    df = openbb.stocks.fa.growth(symbol, 1, False)
+    df = df.to_dict()
+    df = df[0]
     return df
 
 def hum_format(num):
