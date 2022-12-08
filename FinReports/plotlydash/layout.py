@@ -29,7 +29,7 @@ def layout(dash_app):
             html.Table([
                 html.Tr([html.Td('EPS'), html.Td(id='eps')]),
                 html.Tr([html.Td('EPS Growth 5Y'), html.Td(id='epsg5')]),
-                html.Tr([html.Td('Rev Growth 5Y'), html.Td(id='reg5')]),
+                html.Tr([html.Td('RPS Growth 5Y'), html.Td(id='reg5')]),
                 html.Tr([html.Td('ROA'), html.Td(id='roa')]),
                 html.Tr([html.Td('Net Profit Margin'), html.Td(id='npm')]),
                 html.Tr([html.Td('Operating Margin'), html.Td(id='opm')])            

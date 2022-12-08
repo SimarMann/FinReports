@@ -24,6 +24,13 @@ def ohlc_chart(symbol):
     
     return fig
 
+def stocks_quote(symbol):
+    df = openbb.stocks.quote(symbol)
+    df = df.to_dict()
+    first_key = list(df.keys())[0]
+    df = df[first_key]
+    return df
+
 def fa_overview(symbol):
     df = openbb.stocks.fa.overview(symbol)
     df = df.to_dict()
@@ -35,10 +42,10 @@ def fa_overview(symbol):
 def fa_metrics(symbol):
     df = openbb.stocks.fa.metrics(symbol, 1, False)
     df = df.to_dict()
-    df = df[0]
+    first_key = list(df.keys())[0]
+    df = df[first_key]
     return df
 
-## Convert from scientific notation to float
 def fa_income(symbol):
     df = openbb.stocks.fa.income(symbol, False, False, "YahooFinance", 1)
     print(df)
@@ -48,7 +55,8 @@ def fa_income(symbol):
 def fa_growth(symbol):
     df = openbb.stocks.fa.growth(symbol, 1, False)
     df = df.to_dict()
-    df = df[0]
+    first_key = list(df.keys())[0]
+    df = df[first_key]
     return df
 
 def hum_format(num):
