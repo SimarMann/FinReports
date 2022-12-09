@@ -48,7 +48,10 @@ def fa_metrics(symbol):
 
 def fa_income(symbol):
     df = openbb.stocks.fa.income(symbol, False, False, "YahooFinance", 1)
-    print(df)
+    df = df.iloc[:, 0]
+    df = df.to_dict()
+    df = (df['Total revenue'] - df['Net income'])
+    df = hum_format(df) 
     return df
 
 ## Requires API_KEY_FINANCIALMODELINGPREP
@@ -56,7 +59,7 @@ def fa_growth(symbol):
     df = openbb.stocks.fa.growth(symbol, 1, False)
     df = df.to_dict()
     first_key = list(df.keys())[0]
-    df = df[first_key]
+    df = df[first_key]   
     return df
 
 def hum_format(num):
