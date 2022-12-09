@@ -2,13 +2,19 @@ import plotly.graph_objects as go
 from openbb_terminal.sdk import openbb
 import pandas as pd
 from datetime import datetime
-import re
+from dateutil.relativedelta import relativedelta  
+
     
 def ohlc_chart(symbol):
+    
+    end_date = datetime.now().date()
+    start_date = end_date - relativedelta(years = 1)
+    start_date = start_date.strftime('%Y-%m-%d')
+    
     df = openbb.stocks.load(
         symbol = symbol,
-        start_date = '2022-06-01',
-        end_date = '2022-11-01',
+        start_date = start_date,
+        end_date = end_date,
         interval = 1440,
         prepost = False,
         source = 'YahooFinance',
