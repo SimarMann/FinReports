@@ -25,3 +25,14 @@ config.py
 .pytest_cache/
 .coverage
 htmlcov/
+
+#Bootstrap
+FinReports/static/*
+!FinReports/static/css
+FinReports/static/css/*
+!FinReports/static/css/style.css
+!FinReports/static/css/bootstrap.min.css
+!FinReports/static/css/lux.json
+
+
+

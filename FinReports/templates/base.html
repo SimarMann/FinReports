@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, width=device-width">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
+        <script src="{{ url_for('static', filename='/js/bootstrap.min.js') }}"></script>
         <title>FinReports: {% block title %}{% endblock %}</title>
     </head>
     <body>

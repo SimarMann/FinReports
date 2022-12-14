@@ -1,10 +1,17 @@
 import plotly.graph_objects as go
+import plotly.io as pio
 from openbb_terminal.sdk import openbb
 import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta  
+import json
 
-    
+# Create Template
+with open('./FinReports/static/css/lux.json', 'r') as f:
+    template = json.load(f)
+pio.templates['LUX'] = template    
+pio.templates.default = 'LUX'
+
 def ohlc_chart(symbol):
     
     end_date = datetime.now().date()
