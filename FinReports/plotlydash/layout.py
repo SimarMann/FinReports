@@ -2,12 +2,10 @@ from dash import html, dcc, dash_table
 from FinReports import plot
 
 def layout(dash_app):
-    dash_app.layout = html.Div(children=[
+    dash_app.layout = html.Div(className='dash-body', children=[
+        html.Form(className='d-flex', children=[
+            dcc.Input(id='search-input', className='form-control me-sm-2', placeholder='Search', value=False, type='search', debounce=True, required=True)]),
         html.H1(children='Stock Reports'),
-        html.Div([
-            "Search: ",
-            dcc.Input(id='search-input', placeholder='Search', value=False, type='text', debounce=True, required=True)
-            ]),
         html.Div(id='search-output'),
         html.Div([
             html.Table([
