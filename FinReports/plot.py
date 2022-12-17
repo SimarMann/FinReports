@@ -37,12 +37,14 @@ def ohlc_chart(symbol):
     
     return fig
 
+"""
 def stocks_quote(symbol):
     df = openbb.stocks.quote(symbol)
     df = df.to_dict()
     first_key = list(df.keys())[0]
     df = df[first_key]
     return df
+"""
 
 def fa_overview(symbol):
     df = openbb.stocks.fa.overview(symbol)
