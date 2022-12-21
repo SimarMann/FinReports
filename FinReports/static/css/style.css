@@ -1,18 +1,6 @@
 .nav-size {
-    width: 15vw;
-    height: 100vh;
+    width: 5vw;
+    height: 95vh;
     border-radius: 0% 3% 3% 0%;
-}
-
-.icon-margin {
-    margin-bottom: 2%;
-}
-
-.border-radius {
-    border-radius: 0.5rem;
-}
-
-.padding-right {
-    padding-right: 3rem !important;
 }
 
