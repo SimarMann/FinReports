@@ -19,22 +19,24 @@ def ohlc_chart(symbol):
     start_date = start_date.strftime('%Y-%m-%d')
     
     df = openbb.stocks.load(
-        symbol = symbol,
-        start_date = start_date,
-        end_date = end_date,
-        interval = 1440,
-        prepost = False,
-        source = 'YahooFinance',
-        weekly = False,
-        monthly = True
-        )
-    fig = go.Figure(data=go.Ohlc(x=df.index,
+        symbol = symbol, 
+        start_date = start_date, 
+        interval = 1440, 
+        end_date =  end_date, 
+        prepost = False, 
+        source = "YahooFinance", 
+        iexrange = "ytd", 
+        weekly = True, 
+        monthly = False, 
+        verbose = True
+        ) 
+    fig = go.Figure(data=[go.Ohlc(x=df.index,
                                  open=df['Open'],
                                  high=df['High'],
                                  low=df['Low'],
                                  close=df['Close']
-                                 ))
-    
+                                 )])
+
     return fig
 
 """
