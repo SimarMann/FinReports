@@ -1,6 +1,29 @@
+.grid-nav {
+    grid-area: nav;
+}
+
+.grid-search {
+    grid-area: search;
+}
+
+.grid-container {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 7% 93%;
+    grid-template-areas: "nav search";
+}
+
 .nav-size {
     width: 5vw;
     height: 95vh;
     border-radius: 0% 3% 3% 0%;
 }
+
+.search-size {
+    width: 95%;
+    margin-left: 2rem;
+}
+
 

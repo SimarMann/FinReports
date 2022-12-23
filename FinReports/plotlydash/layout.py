@@ -2,8 +2,8 @@ from dash import html, dcc
 from dash_svg import Svg, Path
 
 def layout(dash_app):
-    dash_app.layout = html.Div(children=[
-        html.Nav(className='ms-3 d-flex flex-column flex-shrink-0 p-3 nav-size shadow p-3 mt-3 bg-white rounded-pill', children=[
+    dash_app.layout = html.Div(className='grid-container', children=[
+        html.Nav(className='ms-3 d-flex flex-column flex-shrink-0 p-3 nav-size grid-nav shadow p-3 mt-3 bg-white rounded-pill', children=[
             Svg([
                 Path(stroke='none', d='M0 0h24v24H0z', fill='none'),
                 Path(d='M4.028 7.82a9 9 0 1 0 12.823 -3.4c-1.636 -1.02 -3.064 -1.02 -4.851 -1.02h-1.647'),
@@ -29,7 +29,9 @@ def layout(dash_app):
                 ])
             ])
         ]),
-        dcc.Input(id='search-input', className='form-control me-sm-2', placeholder='Search', type='text', debounce=True),
-        html.H1(children='Stock Reports'),
-        html.Div(id='search-output')
-    ])
+        html.Div(className='grid-search search-size', children=[
+            dcc.Input(id='search-input', className='form-control me-sm-2', placeholder='Search', type='text', debounce=True),
+            html.H1(children='Stock Reports'),
+            html.Div(id='search-output')
+            ])
+        ])
