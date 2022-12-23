@@ -19,11 +19,17 @@
     width: 5vw;
     height: 95vh;
     border-radius: 0% 3% 3% 0%;
+    min-width: 5rem;
 }
 
 .search-size {
     width: 95%;
     margin-left: 2rem;
+}
+
+.mt-6 {
+    margin-top: 5rem;
+
 }
 
 
