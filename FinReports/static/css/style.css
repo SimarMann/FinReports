@@ -27,9 +27,23 @@
     margin-left: 2rem;
 }
 
+.quote-size {
+    width: 25%;
+}
+
+.flex-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
 .mt-6 {
     margin-top: 5rem;
 
+}
+
+.mt-7 {
+    margin-top: 10rem;
 }
 
 
