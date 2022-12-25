@@ -1,3 +1,4 @@
+/* Shared Styles */
 .grid-nav {
     grid-area: nav;
 }
@@ -27,16 +28,20 @@
     margin-left: 2rem;
 }
 
+/* Homepage Styles */
 .quote-size {
-    width: 25%;
+    width: 100%;
 }
 
 .flex-div {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: center;
+    padding: 2rem 2rem 2rem 4rem;
+    width: 60%;
+    margin-left: 10rem;
 }
+
 .mt-6 {
     margin-top: 5rem;
 
@@ -45,5 +50,13 @@
 .mt-7 {
     margin-top: 10rem;
 }
+
+/* StockScreen Styles */
+
+.main-svg {
+    border-radius: 2rem;
+}
+
+
 
 
