@@ -19,7 +19,7 @@ def layout(dash_app):
                     ])
                 ]),
                 html.Li(className='mt-3', children=[
-                    html.A(href='/dashboard/', className='dash-link nav-link active text-center rounded', children=[
+                    html.A(href='/stockscreen/', className='dash-link nav-link active text-center rounded', children=[
                         Svg([
                             Path(d='M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z'),
                             Path(d='M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z'),
@@ -31,7 +31,7 @@ def layout(dash_app):
         ]),
         html.Div(className='grid-search search-size', children=[
             dcc.Input(id='search-input', className='form-control me-sm-2', placeholder='Search', type='text', debounce=True),
-            html.H1(children='Stock Reports'),
+            html.H5(className='mt-3 mb-3 ms-3', children='StockScreen'),
             html.Div(id='search-output')
             ])
         ])
