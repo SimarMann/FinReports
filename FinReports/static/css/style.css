@@ -22,6 +22,10 @@
     border-radius: 0% 3% 3% 0%;
     min-width: 5rem;
 }
+.nav-fixed {
+    position: fixed;
+    top: 0;
+}
 
 .search-size {
     width: 95%;
@@ -53,8 +57,23 @@
 
 /* StockScreen Styles */
 
+.body-height {
+    height: 160vh
+}
+
 .main-svg {
     border-radius: 2rem;
+    box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.data-card {
+    width: 25%;
+    border-radius: 2rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+td {
+    white-space: nowrap;
 }
 
 

@@ -2,8 +2,8 @@ from dash import html, dcc
 from dash_svg import Svg, Path
 
 def layout(dash_app):
-    dash_app.layout = html.Div(className='grid-container', children=[
-        html.Nav(className='ms-3 d-flex flex-column flex-shrink-0 p-3 nav-size grid-nav shadow p-3 mt-3 bg-white rounded-pill', children=[
+    dash_app.layout = html.Div(className='grid-container body-height', children=[
+        html.Nav(className='ms-3 d-flex flex-column flex-shrink-0 p-3 nav-size nav-fixed grid-nav shadow p-3 mt-3 bg-white rounded-pill', children=[
             Svg([
                 Path(stroke='none', d='M0 0h24v24H0z', fill='none'),
                 Path(d='M4.028 7.82a9 9 0 1 0 12.823 -3.4c-1.636 -1.02 -3.064 -1.02 -4.851 -1.02h-1.647'),
@@ -32,6 +32,23 @@ def layout(dash_app):
         html.Div(className='grid-search search-size', children=[
             dcc.Input(id='search-input', className='form-control me-sm-2', placeholder='Search', type='text', debounce=True),
             html.H5(className='mt-3 mb-3 ms-3', children='StockScreen'),
-            html.Div(id='search-output')
+            html.Div(id='search-output'),
+            html.Div(className='card bg-secondary mt-4 data-card pt-4 px-4', children=[
+                html.H3(className='text-center', children=[
+                    Svg([
+                        Path(d='M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z')
+                        ], width="40", height="40", fill="black", className="bi bi-eyeglasses", viewBox="0 0 16 16"), 
+                    'overview'
+                    ]),
+                html.Hr(),
+                html.Table(className='table table-hover', children=[
+                    html.Tr([html.Th('Index'), html.Td(id='indx')]),
+                    html.Tr([html.Th('Market Cap'), html.Td(id='mcap')]),
+                    html.Tr([html.Th('Annual Revenues'), html.Td(id='anre')]),
+                    html.Tr([html.Th('Annual Expenses'), html.Td(id='anex')]),
+                    html.Tr([html.Th('Book/Share'), html.Td(id='bs')]),
+                    html.Tr([html.Th('Cash/Share'), html.Td('N/A', id='cs')])
+                ])
             ])
         ])
+    ])
