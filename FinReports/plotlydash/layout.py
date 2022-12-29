@@ -35,12 +35,12 @@ def layout(dash_app):
             html.Div(id='search-output'),
             html.Div(className='d-flex flex-row flex-nowrap', children=[
                 html.Div(className='card bg-secondary mt-4 me-5 data-card pt-4 px-4', children=[
-                    html.Div(className='d-flex flex-row-reverse flex-nowrap justify-content-evenly', children=[
-                        html.H3(className='pt-1', children='overview'),
+                    html.Div(className='d-flex flex-row-reverse flex-nowrap justify-content-center', children=[
+                        html.H5(className='ps-2', children='overview'),
                         Svg([
                             Path(d='M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z'),
                             Path(d='M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z')
-                            ], width="32", height="32", fill="black", className="bi bi-eye", viewBox="0 0 16 16") 
+                            ], width="16", height="16", fill="black", className="bi bi-eye", viewBox="0 0 16 16") 
                         ]),
                     html.Hr(),
                     html.Table(className='table table-hover', children=[
@@ -49,15 +49,15 @@ def layout(dash_app):
                         html.Tr([html.Th('Annual Revenues'), html.Td(id='anre')]),
                         html.Tr([html.Th('Annual Expenses'), html.Td(id='anex')]),
                         html.Tr([html.Th('Book/Share'), html.Td(id='bs')]),
-                        html.Tr([html.Th('Cash/Share'), html.Td('N/A', id='cs')])
+                        html.Tr([html.Th('Cash/Share'), html.Td(id='cs')])
                     ])
                 ]),
-                html.Div(className='card bg-secondary mt-4 data-card pt-4 px-4', children=[
-                    html.Div(className='d-flex flex-row-reverse flex-nowrap justify-content-evenly', children=[
-                        html.H3(className='pt-1', children='ratios'),
+                html.Div(className='card bg-secondary mt-4 me-5 data-card pt-4 px-4', children=[
+                    html.Div(className='d-flex flex-row-reverse flex-nowrap justify-content-center', children=[
+                        html.H5(className='ps-2', children='ratios'),
                         Svg([
                             Path(d='M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z')
-                            ], width="32", height="32", fill="black", className="bi bi-percent", viewBox="0 0 16 16")
+                            ], width="16", height="16", fill="black", className="bi bi-percent", viewBox="0 0 16 16")
                         ]), 
                     html.Hr(),
                     html.Table(className='table table-hover', children=[
@@ -67,6 +67,24 @@ def layout(dash_app):
                         html.Tr([html.Th('Book Value'), html.Td(id='bv')]),
                         html.Tr([html.Th('D/E'), html.Td(id='dteq')]),
                         html.Tr([html.Th('D/A'), html.Td(id='dtas')])
+                    ])
+                ]),
+                html.Div(className='card bg-secondary mt-4 data-card pt-4 px-4', children=[
+                    html.Div(className='d-flex flex-row-reverse flex-nowrap justify-content-center', children=[
+                        html.H5(className='ps-2', children='earnings'),
+                        Svg([
+                            Path(d='M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'),
+                            Path(d='M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z')
+                            ], width="16", height="16", fill="black", className="bi bi-cash", viewBox="0 0 16 16")
+                        ]), 
+                    html.Hr(),
+                    html.Table(className='table table-hover', children=[
+                        html.Tr([html.Th('EPS'), html.Td(id='eps')]),
+                        html.Tr([html.Th('EPS Growth 5Y'), html.Td(id='epsg5')]),
+                        html.Tr([html.Th('RPS Growth 5Y'), html.Td(id='reg5')]),
+                        html.Tr([html.Th('ROA'), html.Td(id='roa')]),
+                        html.Tr([html.Th('NPM'), html.Td(id='npm')]),
+                        html.Tr([html.Th('OPM'), html.Td(id='opm')])
                     ])
                 ])
            ])
