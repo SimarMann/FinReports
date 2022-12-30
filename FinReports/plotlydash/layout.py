@@ -46,8 +46,8 @@ def layout(dash_app):
                     html.Table(className='table table-hover', children=[
                         html.Tr([html.Th('Index'), html.Td(id='indx')]),
                         html.Tr([html.Th('Market Cap'), html.Td(id='mcap')]),
-                        html.Tr([html.Th('Annual Revenues'), html.Td(id='anre')]),
-                        html.Tr([html.Th('Annual Expenses'), html.Td(id='anex')]),
+                        html.Tr([html.Th('Ann Revenues'), html.Td(id='anre')]),
+                        html.Tr([html.Th('Ann Expenses'), html.Td(id='anex')]),
                         html.Tr([html.Th('Book/Share'), html.Td(id='bs')]),
                         html.Tr([html.Th('Cash/Share'), html.Td(id='cs')])
                     ])
@@ -69,7 +69,7 @@ def layout(dash_app):
                         html.Tr([html.Th('D/A'), html.Td(id='dtas')])
                     ])
                 ]),
-                html.Div(className='card bg-secondary mt-4 data-card pt-4 px-4', children=[
+                html.Div(className='card bg-secondary mt-4 me-5 data-card pt-4 px-4', children=[
                     html.Div(className='d-flex flex-row-reverse flex-nowrap justify-content-center', children=[
                         html.H5(className='ps-2', children='earnings'),
                         Svg([
@@ -80,11 +80,28 @@ def layout(dash_app):
                     html.Hr(),
                     html.Table(className='table table-hover', children=[
                         html.Tr([html.Th('EPS'), html.Td(id='eps')]),
-                        html.Tr([html.Th('EPS Growth 5Y'), html.Td(id='epsg5')]),
-                        html.Tr([html.Th('RPS Growth 5Y'), html.Td(id='reg5')]),
+                        html.Tr([html.Th('EPS G5Y'), html.Td(id='epsg5')]),
+                        html.Tr([html.Th('RPS G5Y'), html.Td(id='reg5')]),
                         html.Tr([html.Th('ROA'), html.Td(id='roa')]),
                         html.Tr([html.Th('NPM'), html.Td(id='npm')]),
                         html.Tr([html.Th('OPM'), html.Td(id='opm')])
+                    ])
+                ]),
+                html.Div(className='card bg-secondary mt-4 data-card pt-4 px-4', children=[
+                    html.Div(className='d-flex flex-row-reverse flex-nowrap justify-content-center', children=[
+                        html.H5(className='ps-2', children='shares'),
+                        Svg([
+                            Path(d='M7.5 1.018a7 7 0 0 0-4.79 11.566L7.5 7.793V1.018zm1 0V7.5h6.482A7.001 7.001 0 0 0 8.5 1.018zM14.982 8.5H8.207l-4.79 4.79A7 7 0 0 0 14.982 8.5zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z'),
+                            ], width="16", height="16", fill="black", className="bi bi-pie-chart", viewBox="0 0 16 16")
+                        ]), 
+                    html.Hr(),
+                    html.Table(className='table table-hover', children=[
+                        html.Tr([html.Th('Price'), html.Td(id='price')]),
+                        html.Tr([html.Th('Outstanding'), html.Td(id='shout')]),
+                        html.Tr([html.Th('52W High'), html.Td(id='52wh')]),
+                        html.Tr([html.Th('52W Low'), html.Td(id='52wl')]),
+                        html.Tr([html.Th('200 DMA'), html.Td(id='200dma')]),
+                        html.Tr([html.Th('Div/Share'), html.Td(id='ds')])
                     ])
                 ])
            ])

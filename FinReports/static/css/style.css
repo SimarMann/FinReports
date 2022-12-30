@@ -58,7 +58,7 @@
 /* StockScreen Styles */
 
 .body-height {
-    height: 160vh
+    height: 120vh
 }
 
 .main-svg {
@@ -67,7 +67,7 @@
 }
 
 .data-card {
-    width: 25%;
+    width: 22%;
     border-radius: 2rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
