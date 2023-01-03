@@ -8,9 +8,12 @@ def init_app():
     with app.app_context():
         
         from FinReports import routes
-        from .plotlydash.dashboard import init_dashboard
-        
         app.register_blueprint(routes.home_bp)
+        
+        from .stockscreen.dashboard import init_dashboard
         app = init_dashboard(app)
+        
+        from .macrodash.dashboard import init_dashboard
+        app = init_dashboard(app)    
         
         return app
