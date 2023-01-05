@@ -1,5 +1,6 @@
 from dash import html, dcc
 from dash_svg import Svg, Path
+from FinReports import plot
 
 def layout(dash_app):
     dash_app.layout = html.Div(className='grid-container body-height', children=[
@@ -35,5 +36,9 @@ def layout(dash_app):
                     ])
                 ])
             ])
+        ]),
+        html.Div(className='grid-search search-size', children=[
+            html.H5(className='mt-5 mb-3 ms-3', children='MacroDash'),
+            dcc.Graph(figure=plot.yield_linechart())            
         ])
     ])

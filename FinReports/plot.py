@@ -39,3 +39,10 @@ def ohlc_chart(symbol):
 
     return fig
 
+def yield_linechart():
+    df = openbb.usbonds()
+    
+    fig = go.Figure(data=go.Scatter(x=df[' '], y=df['Yld (%)']))
+
+    return fig
+    

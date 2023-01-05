@@ -40,6 +40,10 @@ def fa_growth(symbol):
     df = df[first_key]   
     return df
 
+def usbonds():
+    bonds = openbb.economy.usbonds()
+    return bonds
+
 def hum_format(num):
     num = float('{:.3g}'.format(num))
     magnitude = 0
