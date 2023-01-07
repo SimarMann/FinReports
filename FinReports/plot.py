@@ -1,7 +1,6 @@
 import plotly.graph_objects as go
 import plotly.io as pio
 from FinReports import openbb
-import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta  
 import json
@@ -41,8 +40,18 @@ def ohlc_chart(symbol):
 
 def yield_linechart():
     df = openbb.usbonds()
-    
     fig = go.Figure(data=go.Scatter(x=df[' '], y=df['Yld (%)']))
-
+    fig.update_layout(title="US Yield Curve", xaxis_title="", yaxis_title="Yield %")
     return fig
+
+def indices_indicator():
     
+    fig = go.Figure(go.Indicator(
+    mode = "number+delta",
+    value = 400,
+    number = {'prefix': "$"},
+    delta = {'position': "top", 'reference': 320},
+    domain = {'x': [0, 1], 'y': [0, 1]}))
+    
+    return fig
+        

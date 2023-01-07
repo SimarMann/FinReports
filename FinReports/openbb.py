@@ -1,5 +1,6 @@
 from openbb_terminal.sdk import openbb
 
+## StockScreen Functions
 """
 def stocks_quote(symbol):
     df = openbb.stocks.quote(symbol)
@@ -40,10 +41,14 @@ def fa_growth(symbol):
     df = df[first_key]   
     return df
 
+## MacroDash Functions
 def usbonds():
     bonds = openbb.economy.usbonds()
+    bonds = bonds[::-1]
+    bonds['Yld (%)'] = bonds['Yld (%)'].astype(float)
     return bonds
 
+## Formating functions
 def hum_format(num):
     num = float('{:.3g}'.format(num))
     magnitude = 0
