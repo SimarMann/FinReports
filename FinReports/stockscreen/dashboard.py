@@ -10,8 +10,8 @@ def init_dashboard(flask_app):
         server=flask_app,
         routes_pathname_prefix='/stockscreen/',
         external_stylesheets=[
-            '../static/css/style.css',
-            '../static/css/bootstrap.min.css'
+            '../static/css/bootstrap.min.css',
+            '../static/css/style.css'
         ]
     )
     
