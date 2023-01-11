@@ -48,6 +48,10 @@ def usbonds():
     bonds['Yld (%)'] = bonds['Yld (%)'].astype(float)
     return bonds
 
+def indices_futures():
+    indicies_futures = openbb.economy.futures("Finviz", "Indices")
+    return indicies_futures
+
 ## Formating functions
 def hum_format(num):
     num = float('{:.3g}'.format(num))
