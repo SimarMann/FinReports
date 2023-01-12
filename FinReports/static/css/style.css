@@ -55,10 +55,17 @@
     margin-top: 10rem;
 }
 
+/* MacroDash Styles */
+
+.indicator-data {
+    height: 4rem;
+    width: 95%;
+}
+
 /* StockScreen Styles */
 
 .body-height {
-    height: 120vh
+    height: 140vh
 }
 
 .main-svg {
@@ -67,7 +74,7 @@
 }
 
 .data-card {
-    width: 22%;
+    width: 25%;
     border-radius: 2rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -75,6 +82,8 @@
 td {
     white-space: nowrap;
 }
+
+/* StockScreen & MacroDash [Shared Styles] */
 
 ._dash-loading {
     margin: auto;

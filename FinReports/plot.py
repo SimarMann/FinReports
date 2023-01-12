@@ -44,14 +44,17 @@ def yield_linechart():
     fig.update_layout(title="US Yield Curve", xaxis_title="", yaxis_title="Yield %")
     return fig
 
-def indices_indicator():
+def indicies_indicator(name, val, ref):
     
     fig = go.Figure(go.Indicator(
+    title= {'align': "center", 'font':{'size': 10}, 'text': name},    
     mode = "number+delta",
-    value = 400,
-    number = {'prefix': "$"},
-    delta = {'position': "top", 'reference': 320},
-    domain = {'x': [0, 1], 'y': [0, 1]}))
+    value = val,
+    number = {'valueformat': ',.2f', 'font': {'size': 10}}, 
+    delta = {'position': "right", 'reference': ref, 'relative': True, 'valueformat': '.2%', 'font': {'size': 10}},
+    domain={"x": [0, 1], "y": [0, 1]},
+    align= "center"
+    ))
+    
     
     return fig
-        
