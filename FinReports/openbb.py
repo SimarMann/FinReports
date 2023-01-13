@@ -1,6 +1,29 @@
 from openbb_terminal.sdk import openbb
+from datetime import datetime
+from dateutil.relativedelta import relativedelta  
 
 ## StockScreen Functions
+def stock_load(symbol):
+    
+    end_date = datetime.now().date()
+    start_date = end_date - relativedelta(years = 1)
+    start_date = start_date.strftime('%Y-%m-%d')
+    
+    df = openbb.stocks.load(
+        symbol = symbol, 
+        start_date = start_date, 
+        interval = 1440, 
+        end_date =  end_date, 
+        prepost = False, 
+        source = "YahooFinance", 
+        iexrange = "ytd", 
+        weekly = True, 
+        monthly = False, 
+        verbose = True
+        ) 
+    
+    return df
+
 """
 def stocks_quote(symbol):
     df = openbb.stocks.quote(symbol)
