@@ -75,6 +75,15 @@ def indices_futures():
     indicies_futures = openbb.economy.futures("Finviz", "Indices")
     return indicies_futures
 
+def crypto_1mdelta(symbol):
+    end_date = datetime.now().date()
+    start_date = end_date - relativedelta(months= 1)
+    start_date = start_date.strftime('%Y-%m-%d')
+    df = openbb.crypto.load(symbol, start_date, 1440, "binance", "usd", end_date, "YahooFinance")
+    df = df.iloc[[0, -1]]
+    return df
+    
+
 ## Formating functions
 def hum_format(num):
     num = float('{:.3g}'.format(num))

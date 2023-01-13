@@ -40,9 +40,15 @@ def layout(dash_app):
         html.Div(className='grid-search search-size', children=[
             html.H5(className='mt-5 mb-3 ms-3', children='MacroDash'),
             dcc.Graph(figure=plot.yield_linechart()),
-            html.Div(className='card mt-4 me-5 data-card', children=[
-                html.Button('Equity Futures', id='eqfut-input', type='button', className='btn btn-success d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
-                html.Div(id='eqfut-output')
-            ]), 
+            html.Div(className='d-flex flex-row flex-nowrap', children=[
+                html.Div(className='eqfut-card card mt-4 me-5 data-card', children=[
+                    html.Button('Equity Futures 1DΔ', id='eqfut-input', type='button', className='btn btn-success d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
+                    html.Div(id='eqfut-output')
+                ]),
+                html.Div(className='crypto-card card mt-4 me-5 data-card', children=[
+                    html.Button('Crypto 1MΔ', id='crypto-input', type='button', className='btn btn-warning d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
+                    html.Div(id='crypto-output')                    
+                ])
+            ])     
         ])  
     ])

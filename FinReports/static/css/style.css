@@ -62,6 +62,14 @@
     width: 95%;
 }
 
+.eqfut-card {
+    height: 25% !important;
+}
+
+.crypto-card {
+    height: 12% !important;
+}
+
 /* StockScreen Styles */
 
 .body-height {
