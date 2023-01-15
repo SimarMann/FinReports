@@ -71,9 +71,14 @@ def usbonds():
     bonds['Yld (%)'] = bonds['Yld (%)'].astype(float)
     return bonds
 
-def indices_futures():
-    indicies_futures = openbb.economy.futures("Finviz", "Indices")
-    return indicies_futures
+def load_futures(symbol):
+    end_date = datetime.now().date()
+    start_date = end_date - relativedelta(months= 1)
+    start_date = start_date.strftime('%Y-%m-%d')
+    df = openbb.futures.historical([symbol], "")
+    df = df.loc[start_date : end_date]
+    df = df.iloc[[0, -1]]
+    return (df.iloc[0]['Adj Close'], df.iloc[1]['Adj Close'])
 
 def crypto_1mdelta(symbol):
     end_date = datetime.now().date()

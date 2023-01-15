@@ -14,19 +14,14 @@ def init_callbacks(dash_app):
         )
     def eqfut_button(n_clicks, children):
         if (n_clicks % 2) != 0:
-            indfuts = openbb.indices_futures()
-            NAS100 = indfuts.loc['Nasdaq 100']
-            SP500 = indfuts.loc['S&P 500']
-            DJIA = indfuts.loc['DJIA'] 
-            R2000 = indfuts.loc['Russell 2000']
-            VIX = indfuts.loc['VIX']        
+            NAS100 = openbb.load_futures("NQ")
+            SP500 = openbb.load_futures("ES")
+            R2000 = openbb.load_futures("RTY")    
             children = html.Div(className='px-3 py-3', children=[
                 html.Table(className='table table-hover', children=[
-                    html.Tr(dcc.Graph(figure=plot.indicies_indicator(NAS100.name, NAS100['last'], NAS100['prevClose']), className='indicator-data', config = {'displayModeBar': False})),
-                    html.Tr(dcc.Graph(figure=plot.indicies_indicator(SP500.name, SP500['last'], SP500['prevClose']), className='indicator-data my-3', config = {'displayModeBar': False})),
-                    html.Tr(dcc.Graph(figure=plot.indicies_indicator(DJIA.name, DJIA['last'], DJIA['prevClose']), className='indicator-data mb-3', config = {'displayModeBar': False})),
-                    html.Tr(dcc.Graph(figure=plot.indicies_indicator(R2000.name, R2000['last'], R2000['prevClose']), className='indicator-data mb-3', config = {'displayModeBar': False})),
-                    html.Tr(dcc.Graph(figure=plot.indicies_indicator(VIX.name, VIX['last'], VIX['prevClose']), className='indicator-data', config = {'displayModeBar': False}))
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Nasdaq 100', NAS100[1], NAS100[0]), className='indicator-data', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('S&P 500', SP500[1], SP500[0]), className='indicator-data my-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Russell 2000', R2000[1], R2000[0]), className='indicator-data mb-3', config = {'displayModeBar': False}))
                 ])
             ])
         else:            

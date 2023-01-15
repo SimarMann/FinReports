@@ -42,7 +42,7 @@ def layout(dash_app):
             dcc.Graph(figure=plot.yield_linechart()),
             html.Div(className='d-flex flex-row flex-nowrap', children=[
                 html.Div(className='eqfut-card card mt-4 me-5 data-card', children=[
-                    html.Button('Equity Futures 1DΔ', id='eqfut-input', type='button', className='btn btn-success d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
+                    html.Button('Equity Futures 1MΔ', id='eqfut-input', type='button', className='btn btn-success d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
                     html.Div(id='eqfut-output')
                 ]),
                 html.Div(className='crypto-card card mt-4 me-5 data-card', children=[
