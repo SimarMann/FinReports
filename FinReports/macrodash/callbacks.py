@@ -29,6 +29,7 @@ def init_callbacks(dash_app):
         
         return children
     
+    
     @dash_app.callback(
         Output(component_id='crypto-output', component_property='children'),
         Input(component_id='crypto-input', component_property='n_clicks'),
@@ -52,5 +53,37 @@ def init_callbacks(dash_app):
             child = html.Div(children='')
         
         return child 
+    
+    
+    @dash_app.callback(
+        Output(component_id='commod-output', component_property='children'),
+        Input(component_id='commod-input', component_property='n_clicks'),
+        State('commod-output', 'children'),
+        prevent_initial_call=True
+        )
+    
+    def commod_button(n, child):
+        if (n % 2) != 0:
+            GOLD = openbb.load_futures("GC")
+            SILV = openbb.load_futures("SI")
+            COP = openbb.load_futures("HG")
+            OIL = openbb.load_futures("CL")
+            NATG = openbb.load_futures("NG")
+            WHEA = openbb.load_futures("KE") 
+            child = html.Div(className='px-3 py-3', children=[
+                html.Table(className='table table-hover', children=[
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Gold', GOLD[1], GOLD[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Silver', SILV[1], SILV[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Copper', COP[1], COP[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Oil', OIL[1], OIL[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Nat Gas', NATG[1], NATG[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('Wheat', WHEA[1], WHEA[0]), className='indicator-data mb-3', config = {'displayModeBar': False}))                                        
+                ])
+            ])
+
+            
+        else:
+            child = html.Div(children='')
         
+        return child     
  

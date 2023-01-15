@@ -63,22 +63,26 @@
 }
 
 .eqfut-card {
-    height: 25% !important;
+    height: 20% !important;
 }
 
 .crypto-card {
     height: 12% !important;
 }
 
-/* StockScreen Styles */
-
-.body-height {
-    height: 140vh
+.commod-card {
+    height: 30% !important;
 }
 
+/* StockScreen Styles */
 .main-svg {
     border-radius: 2rem;
     box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* StockScreen & MacroDash [Shared Styles] */
+.body-height {
+    height: 160vh
 }
 
 .data-card {
@@ -90,8 +94,6 @@
 td {
     white-space: nowrap;
 }
-
-/* StockScreen & MacroDash [Shared Styles] */
 
 ._dash-loading {
     margin: auto;

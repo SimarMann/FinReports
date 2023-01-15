@@ -48,6 +48,10 @@ def layout(dash_app):
                 html.Div(className='crypto-card card mt-4 me-5 data-card', children=[
                     html.Button('Crypto 1MΔ', id='crypto-input', type='button', className='btn btn-warning d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
                     html.Div(id='crypto-output')                    
+                ]),
+                html.Div(className='commod-card card mt-4 me-5 data-card', children=[
+                    html.Button('Commodities 1MΔ', id='commod-input', type='button', className='btn btn-info d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
+                    html.Div(id='commod-output')          
                 ])
             ])     
         ])  
