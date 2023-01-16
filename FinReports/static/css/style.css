@@ -59,7 +59,7 @@
 
 .indicator-data {
     height: 4rem;
-    width: 95%;
+    width: 90%;
 }
 
 .eqfut-card {
@@ -74,6 +74,10 @@
     height: 30% !important;
 }
 
+.fx-card {
+    height: 25% !important;
+}
+
 /* StockScreen Styles */
 .main-svg {
     border-radius: 2rem;
@@ -82,7 +86,7 @@
 
 /* StockScreen & MacroDash [Shared Styles] */
 .body-height {
-    height: 160vh
+    height: 160vh;
 }
 
 .data-card {

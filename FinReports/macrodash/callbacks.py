@@ -25,8 +25,7 @@ def init_callbacks(dash_app):
                 ])
             ])
         else:            
-            children = html.Div(children='')
-        
+            children = html.Div(children='')       
         return children
     
     
@@ -35,8 +34,7 @@ def init_callbacks(dash_app):
         Input(component_id='crypto-input', component_property='n_clicks'),
         State('crypto-output', 'children'),
         prevent_initial_call=True
-        )
-    
+        )    
     def crypto_button(n, child):
         if (n % 2) != 0:
             BTC = openbb.crypto_1mdelta('btc')
@@ -46,12 +44,9 @@ def init_callbacks(dash_app):
                     html.Tr(dcc.Graph(figure=plot.indicies_indicator('BTC', BTC.iloc[1]['Adj Close'], BTC.iloc[0]['Adj Close']), className='indicator-data mb-3', config = {'displayModeBar': False})),
                     html.Tr(dcc.Graph(figure=plot.indicies_indicator('ETH', ETH.iloc[1]['Adj Close'], ETH.iloc[0]['Adj Close']), className='indicator-data', config = {'displayModeBar': False}))                                        
                 ])
-            ])
-
-            
+            ])            
         else:
-            child = html.Div(children='')
-        
+            child = html.Div(children='')        
         return child 
     
     
@@ -60,8 +55,7 @@ def init_callbacks(dash_app):
         Input(component_id='commod-input', component_property='n_clicks'),
         State('commod-output', 'children'),
         prevent_initial_call=True
-        )
-    
+        )   
     def commod_button(n, child):
         if (n % 2) != 0:
             GOLD = openbb.load_futures("GC")
@@ -79,11 +73,35 @@ def init_callbacks(dash_app):
                     html.Tr(dcc.Graph(figure=plot.indicies_indicator('Nat Gas', NATG[1], NATG[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
                     html.Tr(dcc.Graph(figure=plot.indicies_indicator('Wheat', WHEA[1], WHEA[0]), className='indicator-data mb-3', config = {'displayModeBar': False}))                                        
                 ])
-            ])
-
-            
+            ])            
         else:
-            child = html.Div(children='')
-        
-        return child     
+            child = html.Div(children='')        
+        return child
+
+    @dash_app.callback(
+        Output(component_id='fx-output', component_property='children'),
+        Input(component_id='fx-input', component_property='n_clicks'),
+        State('fx-output', 'children'),
+        prevent_initial_call=True
+        )    
+    def fx_button(n, child):
+        if (n % 2) != 0:
+            EURUSD = openbb.load_fx("USD", "EUR")
+            USDJPY = openbb.load_fx("JPY", "USD")
+            USDCHF = openbb.load_fx("CHF", "USD")
+            USDGBP = openbb.load_fx("GBP", "USD")
+            USDCNY = openbb.load_fx("CNY", "USD")
+            child = html.Div(className='px-3 py-3', children=[
+                html.Table(className='table table-hover', children=[
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('EURUSD', EURUSD[1], EURUSD[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('USDJPY', USDJPY[1], USDJPY[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('USDCHF', USDCHF[1], USDCHF[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('USDGBP', USDGBP[1], USDGBP[0]), className='indicator-data mb-3', config = {'displayModeBar': False})),
+                    html.Tr(dcc.Graph(figure=plot.indicies_indicator('USDCNY', USDCNY[1], USDCNY[0]), className='indicator-data mb-3', config = {'displayModeBar': False}))
+                ])
+            ])            
+        else:
+            child = html.Div(children='')        
+        return child    
+         
  

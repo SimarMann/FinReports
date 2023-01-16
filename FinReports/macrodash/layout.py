@@ -52,6 +52,10 @@ def layout(dash_app):
                 html.Div(className='commod-card card mt-4 me-5 data-card', children=[
                     html.Button('Commodities 1MΔ', id='commod-input', type='button', className='btn btn-info d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
                     html.Div(id='commod-output')          
+                ]),
+                html.Div(className='fx-card card mt-4 me-5 data-card', children=[
+                    html.Button('FX 1MΔ', id='fx-input', type='button', className='btn btn-danger d-flex flex-row-reverse flex-nowrap justify-content-center', n_clicks=0),
+                    html.Div(id='fx-output')          
                 ])
             ])     
         ])  

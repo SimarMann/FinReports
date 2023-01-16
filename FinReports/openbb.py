@@ -87,6 +87,15 @@ def crypto_1mdelta(symbol):
     df = openbb.crypto.load(symbol, start_date, 1440, "binance", "usd", end_date, "YahooFinance")
     df = df.iloc[[0, -1]]
     return df
+
+def load_fx(to_symb, from_symb):
+    end_date = datetime.now().date()
+    start_date = end_date - relativedelta(months= 1)
+    start_date = start_date.strftime('%Y-%m-%d')
+    df = openbb.forex.load(to_symb, from_symb, "d", "1day", start_date, "YahooFinance", False)
+    df = df.loc[start_date : end_date]
+    df = df.iloc[[0, -1]]
+    return (df.iloc[0]['Adj Close'], df.iloc[1]['Adj Close'])
     
 
 ## Formating functions
