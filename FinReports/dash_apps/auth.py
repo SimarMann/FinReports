@@ -1,23 +1,11 @@
-from dash import Dash, page_registry
-from . import layout
-from . import callbacks
+from dash import page_registry
 from flask_login import current_user
-from flask import request, session, redirect, jsonify, flash
-
-
-def init_dashboard(flask_app):
-    """Create a Plotly Dash dashboard."""
-    dash_app = Dash(
-        server=flask_app,
-        routes_pathname_prefix='/macrodash/',
-        external_stylesheets=[
-            '../static/css/bootstrap.min.css',
-            '../static/css/style.css'
-        ]
-    )
+from flask import request, session, redirect, jsonify, flash, current_app
     
-    @flask_app.before_request
-    def check_login():
+    
+
+@current_app.before_request
+def check_login():
          if request.method == 'GET':
              if current_user:
                  if request.url in ['http://127.0.0.1:5000/login', 'http://127.0.0.1:5000/logout']:
@@ -44,9 +32,3 @@ def init_dashboard(flask_app):
                         or request.json['changedPropIds'] == ['{"index":"redirectLogin","type":"redirect"}.n_intervals']))):
                  return
              return jsonify({'status':'401', 'statusText':'unauthorized access'})
-
-    layout.layout(dash_app)
-    
-    callbacks.init_callbacks(dash_app)
-
-    return dash_app.server

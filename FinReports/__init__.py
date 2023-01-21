@@ -29,12 +29,12 @@ def init_app():
         # Create database models
         db.create_all()
         
-        # Import & Initalize stockscreen dashboard
-        from .stockscreen.dashboard import init_dashboard
+        # Import & Initalize macrodash dashboard
+        from .dash_apps.macrodash.dashboard import init_dashboard
         app = init_dashboard(app)
         
-        # Import & Initalize macrodash dashboard
-        from .macrodash.dashboard import init_dashboard
+        # Import & Initalize stockscreen dashboard
+        from .dash_apps.stockscreen.dashboard import init_dashboard
         app = init_dashboard(app)    
         
         return app
