@@ -1,16 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Signup{% endblock %}
+{% block title %}{% endblock %}
+
+{% block body %}
 {% block nav %}{% endblock %}
 {% block header %}{% endblock %}
-
 {% for message in get_flashed_messages() %}
 {% endfor %}
-
 {% block content %}
-  <div class="form-wrapper">
+<div class="form-wrapper d-flex flex-column align-items-center w-100">  
     <h1>Sign Up</h1>
+
     <form method="POST" action="/signup">
       {{ form.csrf_token }}
+
       <fieldset class="name">
         {{ form.name.label }}
         {{ form.name(placeholder='John Smith') }}
@@ -68,4 +70,6 @@
       </div>
     </div>
   </div>
+
+{% endblock %}
 {% endblock %}

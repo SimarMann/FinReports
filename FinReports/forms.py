@@ -11,7 +11,7 @@ class SignupForm(FlaskForm):
         validators=[DataRequired()]
     )
     email = StringField(
-        'Email',
+        'Email address',
         validators=[
             Length(min=6),
             Email(message='Enter a valid email.'),
@@ -38,7 +38,7 @@ class SignupForm(FlaskForm):
 class LoginForm(FlaskForm):
     """User Log-in Form."""
     email = StringField(
-        'Email',
+        'Email address',
         validators=[
             DataRequired(),
             Email(message='Enter a valid email.')

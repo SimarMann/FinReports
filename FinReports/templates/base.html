@@ -3,14 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, width=device-width">
-        <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
-        <script src="{{ url_for('static', filename='/js/bootstrap.min.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         <title>{% block title %}{% endblock %}</title>
     </head>
-    <body class="grid-container">
+{% block body %}
         {% block nav %}{% endblock %}
-        <section class="content grid-search">
             <header>
                 {% block header %}{% endblock %}
             </header>
@@ -21,6 +20,5 @@
             </div>
             {% endfor %}
             {% block content %}{% endblock %}
-        </section>
-    </body>
+{% endblock %}
 </html>

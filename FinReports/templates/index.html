@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+{% block body %}
+<body class="grid-container">
 {% block nav %}
 <nav class="ms-3 d-flex flex-column flex-shrink-0 p-3 nav-size nav-fixed grid-nav shadow p-3 mt-3 bg-white rounded-pill">
   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke-width="1" stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -37,6 +39,7 @@
 {% endblock %}
 {% block header %}{% endblock %}
 {% block content %}
+<section class="content grid-search">
 <div class="mt-5 ms-4">
 <h5>FinReports</h5>
 <h6>Welcome Back <span><em>User</em></span></h6>
@@ -73,4 +76,7 @@
       </figure>
     </article>
 </div>
+</section>
+{% endblock %}
+</body>
 {% endblock %}

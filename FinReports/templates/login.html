@@ -1,56 +1,76 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
+{% block body %}
+<body>
 {% block nav %}{% endblock %}
 {% block header %}{% endblock %}
 
 {% for message in get_flashed_messages() %}
-<div class="alert alert-warning">
-    <button type="button" class="close" data-dismiss="alert">x</button>
+<div class="alert alert-dismissible alert-warning">
     {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
 {% endfor %}
-
 {% block content %}
-  <div class="form-wrapper">
-
-
-    <h1>Log In</h1>
-
+  <div class="form-wrapper d-flex flex-column align-items-center w-100">
+    <h2 class="pt-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke-width="1" stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M4.028 7.82a9 9 0 1 0 12.823 -3.4c-1.636 -1.02 -3.064 -1.02 -4.851 -1.02h-1.647"></path>
+        <path d="M4.914 9.485c-1.756 -1.569 -.805 -5.38 .109 -6.17c.086 .896 .585 1.208 1.111 1.685c.88 -.275 1.313 -.282 1.867 0c.82 -.91 1.694 -2.354 2.628 -2.093c-1.082 1.741 -.07 3.733 1.371 4.173c-.17 .975 -1.484 1.913 -2.76 2.686c-1.296 .938 -.722 1.85 0 2.234c.949 .506 3.611 -.995 4.545 .354c-1.698 .102 -1.536 3.107 -3.983 2.727c2.523 .957 4.345 .462 5.458 -.34c1.965 -1.52 2.879 -3.542 2.879 -5.557c-.014 -1.398 .194 -2.695 -1.26 -4.75"></path>
+    </svg> FinReports
+    </h2>
+    <hr class="w-100">
+<div class="form-min-w">
     <form method="POST" action="/login">
       {{ form.csrf_token }}
 
       <fieldset class="email">
-        {{ form.email.label }}
-        {{ form.email(placeholder='youremail@example.com') }}
-        {% if form.email.errors %}
+        <div class="form-group my-3">
+          {{ form.email.label(class='label-font mb-1')}}
+        <div>
+          {{ form.email(class='form-input-style', placeholder='youremail@example.com') }}
+          {% if form.email.errors %}
           <ul class="errors">
             {% for error in form.email.errors %}
-              <li>{{ error }}</li>{% endfor %}
+            <li>{{ error }}</li>{% endfor %}
           </ul>
-        {% endif %}
-      </fieldset>
+          {% endif %}
+        </div>
+      </div>
+    </fieldset>
 
       <fieldset class="password">
-        {{ form.password.label }}
-        {{ form.password }}
-        {% if form.email.errors %}
+        <div class="form-group">
+          {{ form.password.label(class='label-font mb-1')}}
+          <div>
+          {{ form.password(class='form-input-style')}}
+          {% if form.email.errors %}
           <ul class="errors">
             {% for error in form.password.errors %}
-              <li>{{ error }}</li>{% endfor %}
+            <li>{{ error }}</li>{% endfor %}
           </ul>
-        {% endif %}
+          {% endif %}
+        </div>
+        </div>
       </fieldset>
 
       <div class="submit-button">
-        {{ form.submit }}
+        {{ form.submit(class='btn btn-success rounded-pill w-100 mt-4') }} 
+      </button>
       </div>
 
-      <div class="login-signup">
-        <span>Don't have an account?</span>
-        <a href="{{ url_for('auth_bp.signup') }}">Sign up.</a>
+      <hr class="w-100">
+      <div class="login-signup mt-4">
+        <h4 class="text-center py-4">Don't have an account?</h4>
+        <button type='button' class="btn btn-outline-primary rounded-pill w-100">
+        <a class="a-style" href="{{ url_for('auth_bp.signup') }}">Sign up</a>
+      </button>
       </div>
 
     </form>
   </div>
-
+  </div>
+  {% endblock %}
+</body>
 {% endblock %}
