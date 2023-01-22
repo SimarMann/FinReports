@@ -1,9 +1,10 @@
 """Routes for user authentication."""
-from flask import Blueprint, redirect, render_template, flash, request, session, url_for
+from flask import Blueprint, redirect, render_template, flash, request, session, url_for, current_app, jsonify
 from flask_login import login_required, logout_user, current_user, login_user
 from FinReports.forms import LoginForm, SignupForm
 from FinReports.models import db, User
 from FinReports import login_manager
+from dash import page_registry
 
 
 # Blueprint Configuration
@@ -17,7 +18,7 @@ def login():
     GET requests serve Log-in page.
     POST requests validate and redirect user to dashboard.
     """
-    # Bypass if user is logged in
+    # Redirect if user is logged in
     if current_user.is_authenticated:
         return redirect(url_for('home_bp.home'))
 
@@ -43,7 +44,13 @@ def signup():
     GET requests serve sign-up page.
     POST requests validate form & user creation.
     """
+    
+    # Redirect if user is logged in
+    if current_user.is_authenticated:
+        return redirect(url_for('home_bp.home'))
+    
     form = SignupForm()
+    
     if form.validate_on_submit():
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user is None:
@@ -72,4 +79,33 @@ def load_user(user_id):
 def unauthorized():
     """Redirect unauthorized users to Login page."""
     flash('You must be logged in to view that page.')
-    return redirect(url_for('auth_bp.login'))    
+    return redirect(url_for('auth_bp.login'))
+
+@current_app.before_request
+def check_login():
+         if request.method == 'GET':
+             if current_user:
+                 if request.url in ['http://127.0.0.1:5000/login', 'http://127.0.0.1:5000/signup', 'http://127.0.0.1:5000/logout']:
+                     return
+                 if 'Referer' in request.headers:
+                     if request.headers['Referer'] in ['http://127.0.0.1:5000/login', 'http://127.0.0.1:5000/signup', 'http://127.0.0.1:5000/logout']:
+                         return 
+                 if current_user.is_authenticated:
+                     return
+                 else:
+                     for pg in page_registry:
+                         if request.path == page_registry[pg]['path']:
+                             session['url'] = request.url
+             flash('You must be logged in to view that page.')                
+             return redirect('http://127.0.0.1:5000/login')                
+                             
+         else:
+             if current_user:
+                 if current_user.is_authenticated or request.path in ['/login', '/signup']:
+                     return
+             if (request.headers['Referer'] in ['http://127.0.0.1:5000/login', 'http://127.0.0.1:5000/signup', 'http://127.0.0.1:5000/logout'] 
+                 and (request.path in ['/_dash-layout', '/_dash-dependencies'] or
+                      (request.json['changedPropIds'] == ["_pages_location.pathname", "_pages_location.search"]
+                        or request.json['changedPropIds'] == ['{"index":"redirectLogin","type":"redirect"}.n_intervals']))):
+                 return
+             return jsonify({'status':'401', 'statusText':'unauthorized access'})    

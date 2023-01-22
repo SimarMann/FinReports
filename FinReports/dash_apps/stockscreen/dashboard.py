@@ -1,7 +1,6 @@
 from dash import Dash
 from . import layout
 from . import callbacks
-from .. import auth
 
 
 def init_dashboard(flask_app):
@@ -14,9 +13,6 @@ def init_dashboard(flask_app):
             '../static/css/style.css'
         ]
     )
-    
-    with flask_app.test_request_context():
-        auth.check_login()
     
     layout.layout(dash_app)
     
