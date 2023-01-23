@@ -38,6 +38,13 @@
 </nav>
 {% endblock %}
 {% block header %}{% endblock %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-dismissible alert-success">
+  <p class="pt-5 pr-1">{{ message }}</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endfor %}
+
 {% block content %}
 <section class="content grid-search">
 <div class="mt-5 ms-4">

@@ -28,6 +28,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.check_password(password=form.password.data):
+            flash('Login Success!')
             login_user(user)
             next_page = request.args.get('next')
             return redirect(next_page or url_for('home_bp.home'))
@@ -61,6 +62,7 @@ def signup():
             user.set_password(form.password.data)
             db.session.add(user)
             db.session.commit()  # Create new user
+            flash('Register Success!')
             login_user(user)  # Log in as newly created user
             return redirect(url_for('home_bp.home'))
         flash('A user already exists with that email address.')        
