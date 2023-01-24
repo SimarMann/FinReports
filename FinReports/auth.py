@@ -98,8 +98,7 @@ def check_login():
                      for pg in page_registry:
                          if request.path == page_registry[pg]['path']:
                              session['url'] = request.url
-             flash('You must be logged in to view that page.')                
-             return redirect('http://127.0.0.1:5000/login')                
+             return unauthorized()                         
                              
          else:
              if current_user:
