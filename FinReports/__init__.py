@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_session import Session
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+session = Session()
 
 def init_app():
     """Initialize the core application."""
@@ -15,6 +17,7 @@ def init_app():
     # Initialize Plugins
     db.init_app(app)
     login_manager.init_app(app)
+    session.init_app(app)
     
     with app.app_context():
         
