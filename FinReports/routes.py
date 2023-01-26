@@ -20,7 +20,6 @@ def logout():
 @home_bp.route('/user/<name>')
 @login_required
 def user_profile(name):
-        print(name)
         if current_user.name != name:
                 return redirect(url_for('home_bp.home'))
         return render_template('user_profile.html', user=current_user)

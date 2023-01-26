@@ -51,6 +51,10 @@
     margin-left: 10rem;
 }
 
+.mr-3-imp {
+    margin-right: 1rem !important;
+}
+
 .mt-6 {
     margin-top: 5rem;
 
