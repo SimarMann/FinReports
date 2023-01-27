@@ -34,7 +34,15 @@ def layout(dash_app):
                             Path(d='M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z'),
                         ], width="16", height="16", fill="currentColor", className="bi bi-graph-up", viewBox="0 0 16 16")
                     ])
-                ])
+                ]),
+                html.Li(className='mt-7', children=[
+                    html.A(href="/logout", className='nav-link text-center rounded', children=[
+                        Svg([
+                            Path(d='M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z'),
+                            Path(d='M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z')
+                            ], width="16", height="16", fill="currentColor", className="bi bi-box-arrow-right", viewBox="0 0 16 16")
+                    ])
+                ])                
             ])
         ]),
         html.Div(className='grid-search search-size', children=[

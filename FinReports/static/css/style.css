@@ -32,6 +32,16 @@
     margin-left: 2rem;
 }
 
+a:hover {
+    background-color: black !important;
+}
+
+a:hover svg {
+    color: white;
+}
+
+
+
 /* Homepage Styles */
 .quote-size {
     width: 100%;
@@ -51,8 +61,8 @@
     margin-left: 10rem;
 }
 
-.mr-3-imp {
-    margin-right: 1rem !important;
+.mr-5-imp {
+    margin-right: 3rem !important;
 }
 
 .mt-6 {
