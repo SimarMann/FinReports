@@ -17,6 +17,9 @@ def ohlc_chart(symbol):
                                  low=df['Low'],
                                  close=df['Close']
                                  )])
+    
+    fig.update_layout(title=symbol)
+    
     return fig
 
 def yield_linechart():
