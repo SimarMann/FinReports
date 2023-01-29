@@ -17,11 +17,6 @@ def logout():
     logout_user()
     return redirect(url_for('auth_bp.login'))       
 
-@home_bp.route('/user/<name>')
-@login_required
-def user_profile(name):
-        if current_user.name != name:
-                return redirect(url_for('home_bp.home'))
-        return render_template('user_profile.html', user=current_user)
+
         
 

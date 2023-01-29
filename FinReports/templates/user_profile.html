@@ -46,19 +46,87 @@
   </nav>
 {% endblock %}
 {% block header %}{% endblock %}
-{% for message in get_flashed_messages() %}{% endfor %}
+
 
 {% block content %}
-<section class="content grid-search">
-    <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+<section class="content grid-search d-flex flex-row">
+  <div class="w-25 m-5 p-5 d-flex flex-column align-items-center card">
+    <svg xmlns="http://www.w3.org/2000/svg" width="112" height="112" fill="grey" class="bi bi-person-circle" viewBox="0 0 16 16">
         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
       </svg>
-    <h1>{{ user.name }}</h1>
-    <h3>Email: {{ user.email }} </h3>
-    <h3>Last Login: {{ user.last_login }} </h3>
-    <h3>Created: {{ user.created_on }} </h3>
-    <hr>
+    <h3 class="pt-3">{{ user.name }} </h3>
+    <p>{{ user.email }} </p>
+    <p>Last Login: {{ user.last_login }} </p>
+    <p>Created: {{ user.created_on }} </p>
+  </div>
+
+  <div class="w-50 m-5 p-5">
+    <form method="POST" action="/user/{{ user.name }}">
+      {{ form.csrf_token }}
+
+      <fieldset class="current_password">
+        <div class="form-group mt-3">
+          {{ form.current_password.label(class='label-font mb-1')}}
+          <div>
+          {{ form.current_password(class='form-input-style')}}
+          {% if form.current_password.errors %}
+          <ul class="errors">
+            {% for error in form.current_password.errors %}
+            <li>{{ error }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="new_password">
+        <div class="form-group mt-3">
+          {{ form.new_password.label(class='label-font mb-1') }}
+          <div>
+            {{ form.new_password(class='form-input-style') }}
+            {% if form.new_password.errors %}
+            <ul class="errors">
+              {% for error in form.new_password.errors %}
+              <li>{{ error }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="confirm_password">
+        <div class="form-group mt-3">
+          {{ form.confirm_password.label(class='label-font mb-1') }}
+          <div>
+            {{ form.confirm_password(class='form-input-style') }}
+            {% if form.confirm_password.errors %}
+            <ul class="errors">
+              {% for error in form.confirm_password.errors %}
+              <li>{{ error }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="submit-button mt-3">
+        {{ form.submit(class='btn btn-success rounded-pill w-100 mt-4') }} 
+      </div>
+      
+    </form>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class=flashes class="mt-5">
+      {% for category, message in messages %}
+      <p class="{{ category }}">{{ message }}</p>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+  </div>
 </section>    
 {% endblock %}
 </body>

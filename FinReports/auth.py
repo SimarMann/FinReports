@@ -1,7 +1,7 @@
 """Routes for user authentication."""
 from flask import Blueprint, redirect, render_template, flash, request, session, url_for, current_app, jsonify
 from flask_login import login_required, logout_user, current_user, login_user
-from FinReports.forms import LoginForm, SignupForm
+from FinReports.forms import LoginForm, SignupForm, ChangePasswordForm
 from FinReports.models import db, User
 from FinReports import login_manager
 from dash import page_registry
@@ -68,6 +68,25 @@ def signup():
         flash('A user already exists with that email address.')        
     return render_template(
         'signup.html', form=form)
+
+@auth_bp.route('/user/<name>', methods=['GET', 'POST'])
+@login_required
+def user_profile(name):
+        if current_user.name != name:
+                return redirect(url_for('home_bp.home'))
+        
+        form = ChangePasswordForm()
+        if form.validate_on_submit():
+            user = current_user
+            if not user.check_password(password=form.current_password.data):
+                flash('Invalid Password', 'alert alert-dismissible alert-warning mt-5')
+                return redirect(url_for('auth_bp.user_profile', name=user.name)) 
+            user.set_password(form.new_password.data)
+            db.session.commit()
+            flash('Password Changed!', 'alert alert-dismissible alert-success mt-5')
+            return redirect(url_for('auth_bp.user_profile', name=user.name))
+             
+        return render_template('user_profile.html', user=current_user, form=form)    
 
 @login_manager.user_loader
 def load_user(user_id):
