@@ -57,8 +57,8 @@
       </svg>
     <h3 class="pt-3">{{ user.name }} </h3>
     <p>{{ user.email }} </p>
-    <p>Last Login: {{ user.last_login }} </p>
-    <p>Created: {{ user.created_on }} </p>
+    <p>Last Login: <small>{{ user.last_login.date() }}</small> </p>
+    <p>Created: <small>{{ user.created_on.date() }}</small> </p>
   </div>
 
   <div class="w-50 m-5 p-5">

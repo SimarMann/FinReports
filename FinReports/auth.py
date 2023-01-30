@@ -1,10 +1,11 @@
 """Routes for user authentication."""
 from flask import Blueprint, redirect, render_template, flash, request, session, url_for, current_app, jsonify
-from flask_login import login_required, logout_user, current_user, login_user
+from flask_login import login_required, current_user, login_user
 from FinReports.forms import LoginForm, SignupForm, ChangePasswordForm
 from FinReports.models import db, User
 from FinReports import login_manager
 from dash import page_registry
+from datetime import datetime
 
 
 # Blueprint Configuration
@@ -30,6 +31,8 @@ def login():
         if user and user.check_password(password=form.password.data):
             flash('Login Success!')
             login_user(user)
+            current_user.last_login = datetime.now()
+            db.session.commit()
             next_page = request.args.get('next')
             return redirect(next_page or url_for('home_bp.home'))
         flash('Invalid username/password combination')
@@ -55,9 +58,12 @@ def signup():
     if form.validate_on_submit():
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user is None:
+            dt_stamp = datetime.now()
             user = User(
                 name=form.name.data,
-                email=form.email.data
+                email=form.email.data,
+                created_on= dt_stamp,
+                last_login=dt_stamp
                 )
             user.set_password(form.password.data)
             db.session.add(user)
