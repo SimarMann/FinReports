@@ -39,7 +39,13 @@ def init_callbacks(dash_app):
         try:
             dict = openbb.fa_overview(input_value)
             ann_exp = openbb.fa_income(input_value)
-            return dcc.Graph(id='search_output', figure=plot.ohlc_chart(input_value), config={'displaylogo': False}), dict['Exchange'], dict['Market capitalization'], dict['Revenue TTM'], ann_exp, dict['Book value'], 'N/A', dict['PE ratio'], dict['Price to sales ratio TTM'], dict['Price to book ratio'], dict['Book total'], 'N/A', 'N/A', dict['EPS'], 'N/A', 'N/A', dict['Return on assets TTM'], dict['Profit margin'], dict['Operating margin TTM'], 'N/A', dict['Shares outstanding'], dict['52 week high'], dict['52 week low'], dict['200 day moving average'], dict['Dividend per share'] 
+            fa_met = openbb.fa_metrics(input_value)
+            fa_growth = openbb.fa_growth(input_value)
+            fa_quote = openbb.stocks_quote(input_value)
+            price = fa_quote['Price']
+            name = fa_quote['Name']
+            
+            return dcc.Graph(id='search_output', figure=plot.ohlc_chart(input_value, name), config={'displaylogo': False}), dict['Exchange'], dict['Market capitalization'], dict['Revenue TTM'], ann_exp, dict['Book value'], fa_met['Cash per share'], dict['PE ratio'], dict['Price to sales ratio TTM'], dict['Price to book ratio'], dict['Book total'], fa_met['Debt to equity'], fa_met['Debt to assets'], dict['EPS'], fa_growth['Five y net income growth per share'], fa_growth['Five y revenue growth per share'], dict['Return on assets TTM'], dict['Profit margin'], dict['Operating margin TTM'], price, dict['Shares outstanding'], dict['52 week high'], dict['52 week low'], dict['200 day moving average'], dict['Dividend per share'] 
         except (KeyError, TypeError, ValueError) as error:
             print(error)
       

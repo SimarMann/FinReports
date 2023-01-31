@@ -2,7 +2,7 @@ from openbb_terminal.sdk import openbb
 from datetime import datetime
 from dateutil.relativedelta import relativedelta  
 
-## StockScreen Functions
+"""StockScreen Functions"""
 def stock_load(symbol):
     
     end_date = datetime.now().date()
@@ -24,14 +24,13 @@ def stock_load(symbol):
     
     return df
 
-"""
-def stocks_quote(symbol):
-    df = openbb.stocks.quote(symbol)
+def fa_income(symbol):
+    df = openbb.stocks.fa.income(symbol, False, False, "YahooFinance", 1)
+    df = df.iloc[:, 0]
     df = df.to_dict()
-    first_key = list(df.keys())[0]
-    df = df[first_key]
+    df = (df['Total revenue'] - df['Net income'])
+    df = hum_format(df) 
     return df
-"""
 
 def fa_overview(symbol):
     df = openbb.stocks.fa.overview(symbol)
@@ -40,20 +39,22 @@ def fa_overview(symbol):
     df['Book total']= hum_format(float(df['Book value'])*(num_format(df['Shares outstanding'])))
     return df
 
+
+## Requires API_KEY_FINANCIALMODELINGPREP
+def stocks_quote(symbol):
+    df = openbb.stocks.fa.quote(symbol)
+    df = df.to_dict()
+    first_key = list(df.keys())[0]
+    df = df[first_key]
+    return df
+
+
 ## Requires API_KEY_FINANCIALMODELINGPREP
 def fa_metrics(symbol):
     df = openbb.stocks.fa.metrics(symbol, 1, False)
     df = df.to_dict()
     first_key = list(df.keys())[0]
     df = df[first_key]
-    return df
-
-def fa_income(symbol):
-    df = openbb.stocks.fa.income(symbol, False, False, "YahooFinance", 1)
-    df = df.iloc[:, 0]
-    df = df.to_dict()
-    df = (df['Total revenue'] - df['Net income'])
-    df = hum_format(df) 
     return df
 
 ## Requires API_KEY_FINANCIALMODELINGPREP
@@ -64,7 +65,7 @@ def fa_growth(symbol):
     df = df[first_key]   
     return df
 
-## MacroDash Functions
+"""MacroDash Functions"""
 def usbonds():
     bonds = openbb.economy.usbonds()
     bonds = bonds[::-1]
@@ -98,7 +99,7 @@ def load_fx(to_symb, from_symb):
     return (df.iloc[0]['Adj Close'], df.iloc[1]['Adj Close'])
     
 
-## Formating functions
+"""Formating functions"""
 def hum_format(num):
     num = float('{:.3g}'.format(num))
     magnitude = 0

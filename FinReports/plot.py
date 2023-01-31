@@ -9,7 +9,7 @@ with open('./FinReports/static/css/lux.json', 'r') as f:
 pio.templates['LUX'] = template    
 pio.templates.default = 'LUX'
 
-def ohlc_chart(symbol):
+def ohlc_chart(symbol, name):
     df = openbb.stock_load(symbol)
     fig = go.Figure(data=[go.Ohlc(x=df.index,
                                  open=df['Open'],
@@ -18,7 +18,7 @@ def ohlc_chart(symbol):
                                  close=df['Close']
                                  )])
     
-    fig.update_layout(title=symbol)
+    fig.update_layout(title=name)
     
     return fig
 
