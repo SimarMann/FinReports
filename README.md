@@ -1,5 +1,5 @@
 # FinReports
-Video Demo: *COMING SOON*
+Video Demo: [Youtube](https://youtu.be/mkvdpnTWgYY)
 
 A finance dashboard app with a user authentication system.
 
